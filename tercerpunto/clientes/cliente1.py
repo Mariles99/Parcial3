@@ -11,18 +11,18 @@ def process_records(records):
     for record in records:
 
         data = record['Data']
-        # Decodificar el dato de la secuencia como una cadena
+        
         data_str = data.decode('utf-8')
-        # Convertir la cadena en un diccionario
+        
         data_dict = eval(data_str)
-        # Obtener el precio de la acción
+        
         precio = data_dict['close']
         
-        precio_historial.append(precio)  # Agregar precio al historial
+        precio_historial.append(precio) 
         
         
         if len(precio_historial) >= 21:
-            # Realizar el cálculo de la franja inferior de Bollinger y definir un umbral
+        
             
             print(precio_historial[:-1])
             print(len(precio_historial[:-1]))
@@ -34,10 +34,11 @@ def process_records(records):
             print("\n\n")
             
             if precio > bollingerSuperior:
-                # Si el precio está por debajo de la franja inferior, generar una alerta
+               
+               
                 generarAlerta(precio, bollingerSuperior)
             
-            # Limitar el historial a los últimos 20 precios
+            
             precio_historial = precio_historial[-20:]
 
 def bollingerSup(precio):
@@ -51,7 +52,7 @@ def bollingerSup(precio):
     return bollinger
 
 def generarAlerta(precio, bollingerSuperior):
-    # Lógica para generar una alerta cuando el precio está por debajo de la franja inferior
+    
     print(f"Alerta: el precio está por encima de la franja superior de Bollinger ({bollingerSuperior})")
     print("Precio actual:", precio)
 
@@ -63,26 +64,19 @@ def main():
     try:
         kinesis_client = boto3.client('kinesis')
 
-        #------------------
-        # Get the shard ID.
-        #------------------
+     
         response = kinesis_client.describe_stream(StreamName=stream_name)
         shard_id = response['StreamDescription']['Shards'][3]['ShardId']
 
-        #---------------------------------------------------------------------------------------------
-        # Get the shard iterator.
-        # ShardIteratorType=AT_SEQUENCE_NUMBER|AFTER_SEQUENCE_NUMBER|TRIM_HORIZON|LATEST|AT_TIMESTAMP
-        #---------------------------------------------------------------------------------------------
+
         response = kinesis_client.get_shard_iterator(
             StreamName=stream_name,
             ShardId=shard_id,
             ShardIteratorType='TRIM_HORIZON'
         )
         shard_iterator = response['ShardIterator']
-        #-----------------------------------------------------------------
-        # Get the records.
-        # Get max_records from the shard, or run continuously if you wish.
-        #-----------------------------------------------------------------
+       
+       
         max_records = 100
         record_count = 0
 

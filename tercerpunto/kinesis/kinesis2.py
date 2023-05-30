@@ -3,15 +3,15 @@ import random
 import json
 import boto3
 
-STREAM_NAME = "kinesis2"
+STREAM_NAME = "kinesis"
 
 
 def get_data():
     
-    start_date = datetime(2023, 5, 25, 13, 0, 0)
-    end_date = datetime(2023, 5, 25, 18, 0, 0)
+    start_date = datetime(2023, 5, 29, 12, 0, 0)
+    end_date = datetime(2023, 5, 29, 19, 0, 0)
 
-    # Calcula la diferencia en días entre las fechas de inicio y fin
+    
     delta = end_date - start_date
 
     random_seconds = random.randint(0, delta.total_seconds())
@@ -35,4 +35,4 @@ def generate(stream_name, kinesis_client):
 
 
 if __name__ == '__main__':
-    generate(STREAM_NAME, boto3.client('kinesis2', region_name='us-east-1'))
+    generate(STREAM_NAME, boto3.client('kinesis', region_name='us-east-1'))

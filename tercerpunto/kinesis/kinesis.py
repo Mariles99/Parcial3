@@ -8,10 +8,10 @@ STREAM_NAME = "kinesis"
 
 def get_data():
     
-    start_date = datetime(2023, 5, 25, 13, 0, 0)
-    end_date = datetime(2023, 5, 25, 18, 0, 0)
+    start_date = datetime(2023, 5, 29, 12, 0, 0)
+    end_date = datetime(2023, 5, 29, 19, 0, 0)
 
-    # Calcula la diferencia en días entre las fechas de inicio y fin
+    
     delta = end_date - start_date
 
     random_seconds = random.randint(0, delta.total_seconds())
