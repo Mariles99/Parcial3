@@ -47,5 +47,6 @@ jobs:
          source env/bin/activate
          cd tercerpunto/clientes 
          pytest 
-         cd tercerpunto/kinesis
+         cd ..
+         cd kinesis
          pytest
