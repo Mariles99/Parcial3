@@ -49,4 +49,4 @@ jobs:
          pytest 
          cd ..
          cd kinesis
-         pytest
+         python test_kinesis.py
