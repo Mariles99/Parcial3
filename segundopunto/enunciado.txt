@@ -1,0 +1,4 @@
+2) Crear un pipeline de procesamiento para los datos de noticias del parcial 2 usandoPyspark ML. Se debe vectorizar usando TFxIDF. Implementar el pipeline en AWS GLUE o ejecutarlo en EMR con spark submit.
+Usar de guía:
+
+https://spark.apache.org/docs/latest/ml-pipeline.html
